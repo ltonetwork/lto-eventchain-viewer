@@ -1,0 +1,22 @@
+<mat-toolbar class="mat-elevation-z2">
+  <mat-toolbar-row fxLayout="row" fxLayoutAlign="center center">
+    <h1>
+      Chains
+    </h1>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="chains">
+  <mat-grid-list [cols]="columns$ | async" rowHeight="250px">
+    <mat-grid-tile>
+      <div class="tile">
+        <mat-card class="mat-elevation-z1" routerLink="123">
+          <mat-card-title>Chain name</mat-card-title>
+          <mat-card-content>
+            Some chain information
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</div>

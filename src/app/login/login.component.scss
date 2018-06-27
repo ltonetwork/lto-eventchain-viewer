@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  height: 100%;
+}
+
+.login-card {
+  background: white;
+  border-radius: 4px;
+  width: 500px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 16px;
+  overflow: hidden;
+}
+
+form {
+  padding: 0 8px;
+}
+
+.buttons-container {
+  margin-top: 16px;
+  margin-bottom: 0 -8px -8px -8px;
+
+  button {
+  }
+}

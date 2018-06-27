@@ -1,0 +1,19 @@
+mat-toolbar {
+  background: white;
+}
+h1 {
+  font-weight: 100 !important;
+}
+
+.events-container {
+  width: 100%;
+  max-width: 1000px;
+  padding: 16px;
+  margin: 0 auto;
+  box-sizing: border-box;
+
+  mat-icon {
+    margin: 10px 10px 10px 32px;
+    transform: rotate(90deg);
+  }
+}
