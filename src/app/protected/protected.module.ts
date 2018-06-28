@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ProtectedComponent } from './protected.component';
 import { ChainsListComponent } from './chains-list/chains-list.component';
-import { EventsListComponent } from './events-list/events-list.component';
 import {
   MatToolbarModule,
   MatGridListModule,
@@ -76,7 +75,6 @@ import { CommentsComponent } from './chain-info/comments/comments.component';
   declarations: [
     ProtectedComponent,
     ChainsListComponent,
-    EventsListComponent,
     ChainInfoComponent,
     EventsComponent,
     IdentitiesComponent,

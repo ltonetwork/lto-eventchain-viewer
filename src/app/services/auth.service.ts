@@ -48,8 +48,11 @@ export class AuthService {
     this._user$.next(user);
   }
 
-  register(name: string, email: string, password: string) {
-    const account = this.ltoApi.createAccount(5);
+  register(name: string, email: string, password: string, seed?: string) {
+    const account = seed
+      ? this.ltoApi.createAccountFromExistingPhrase(seed)
+      : this.ltoApi.createAccount(5);
+
     const user: User = {
       name,
       email,

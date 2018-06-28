@@ -15,9 +15,9 @@ export class RegisterComponent {
     private _router: Router
   ) {}
 
-  async register(data: { email: string; name: string; password: string }) {
+  async register(data: { email: string; name: string; password: string; seed: string }) {
     try {
-      await this._auth.register(data.name, data.email, data.password);
+      await this._auth.register(data.name, data.email, data.password, data.seed);
     } catch (err) {
       this._snackbar.open('REGISTRACTION ERROR', 'DISMISS', {
         duration: 1500
