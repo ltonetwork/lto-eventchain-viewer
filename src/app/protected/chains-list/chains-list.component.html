@@ -6,17 +6,31 @@
   </mat-toolbar-row>
 </mat-toolbar>
 <div class="chains">
-  <mat-grid-list [cols]="columns$ | async" rowHeight="250px">
-    <mat-grid-tile>
-      <div class="tile">
-        <mat-card class="mat-elevation-z1" routerLink="123">
-          <mat-card-title>Chain name</mat-card-title>
+  <ng-container *ngIf="!isError; else errorTpl">
+    <ng-container *ngIf="chains$ | async as chains; else loadingTpl">
+      <div fxLayout="column" fxLayoutGap="16px">
+        <mat-card class="mat-elevation-z1" [routerLink]="chain.id" *ngFor="let chain of chains">
+          <mat-card-title>ID: {{chain.id}}</mat-card-title>
           <mat-card-content>
-            Some chain information
+            <div fxLayout="row">
+              <div fxFlex="50">
+                <span class="label" fxFlex="1 1 auto">Events: </span>
+                <span>{{chain.events.length}}</span>
+              </div>
+            </div>
           </mat-card-content>
         </mat-card>
       </div>
-    </mat-grid-tile>
-  </mat-grid-list>
-
+    </ng-container>
+  </ng-container>
 </div>
+
+<ng-template #loadingTpl>
+  <div class="progress-container" fxLayout="row" fxLayoutAlign="center center">
+    <mat-progress-spinner mode="indeterminate" [diameter]="100"></mat-progress-spinner>
+  </div>
+</ng-template>
+
+<ng-template #errorTpl>
+  <div>Error</div>
+</ng-template>

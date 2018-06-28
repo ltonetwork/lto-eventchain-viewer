@@ -1,0 +1,21 @@
+<mat-toolbar class="mat-elevation-z2">
+  <mat-toolbar-row fxLayout="row">
+    <div fxFlex="10">
+      <button mat-icon-button routerLink="../">
+        <mat-icon>keyboard_backspace</mat-icon>
+      </button>
+    </div>
+    <h1 fxFlex="1 1 auto" fxLayout="row" fxLayoutAlign="center">
+      Details of {{(chain$ | async).id}}
+    </h1>
+    <div fxFlex="10"></div>
+  </mat-toolbar-row>
+  <mat-toolbar-row fxLayout="row" fxLayoutAlign="center" class="tabs-row">
+    <nav mat-tab-nav-bar>
+      <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+        {{link.label}}
+      </a>
+    </nav>
+  </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>

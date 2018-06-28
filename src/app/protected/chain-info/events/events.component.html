@@ -1,0 +1,40 @@
+<ng-container *ngIf="eventChain$ | async as chain">
+  <div class="events-container">
+    <ng-container *ngFor="let event of chain.events; last as isLast">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>HASH: HGH23G4H2134GJHG123H4GH1234FC23421B34N2134</mat-panel-title>
+          <mat-panel-description>Description goes here</mat-panel-description>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <div fxLayout="column" fxLayoutGap="8px">
+            <div class="date">
+              <span class="label">Event creation date:</span>
+              <br>
+              <i>{{event.timestamp | date}}</i>
+            </div>
+            <div class="hash">
+              <span class="label">Event hash:</span>
+              <br>
+              <i>{{event.hash}}</i>
+            </div>
+            <div class="signature">
+              <span class="label">Event signature:</span>
+              <br>
+              <i>{{event.signature}}</i>
+            </div>
+            <div class="body">
+              <span class="label">Event body:</span>
+              <pre>{{getBodyFor(event.hash) | json}}</pre>
+            </div>
+          </div>
+        </ng-template>
+      </mat-expansion-panel>
+
+      <mat-icon *ngIf="!isLast">
+        link
+      </mat-icon>
+    </ng-container>
+
+  </div>
+</ng-container>

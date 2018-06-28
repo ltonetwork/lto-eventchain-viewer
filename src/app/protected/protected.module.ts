@@ -10,9 +10,15 @@ import {
   MatCardModule,
   MatButtonModule,
   MatIconModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatProgressSpinnerModule,
+  MatTabsModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ChainInfoComponent } from './chain-info/chain-info.component';
+import { EventsComponent } from './chain-info/events/events.component';
+import { IdentitiesComponent } from './chain-info/identities/identities.component';
+import { CommentsComponent } from './chain-info/comments/comments.component';
 
 @NgModule({
   imports: [
@@ -24,6 +30,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatButtonModule,
     MatIconModule,
     MatExpansionModule,
+    MatProgressSpinnerModule,
+    MatTabsModule,
     RouterModule.forChild([
       {
         path: '',
@@ -35,7 +43,26 @@ import { FlexLayoutModule } from '@angular/flex-layout';
           },
           {
             path: 'chains/:chainId',
-            component: EventsListComponent
+            component: ChainInfoComponent,
+            children: [
+              {
+                path: 'events',
+                component: EventsComponent
+              },
+              {
+                path: 'identities',
+                component: IdentitiesComponent
+              },
+              {
+                path: 'comments',
+                component: CommentsComponent
+              },
+              {
+                path: '',
+                pathMatch: 'full',
+                redirectTo: 'events'
+              }
+            ]
           },
           {
             path: '',
@@ -46,6 +73,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
       }
     ])
   ],
-  declarations: [ProtectedComponent, ChainsListComponent, EventsListComponent]
+  declarations: [
+    ProtectedComponent,
+    ChainsListComponent,
+    EventsListComponent,
+    ChainInfoComponent,
+    EventsComponent,
+    IdentitiesComponent,
+    CommentsComponent
+  ]
 })
 export class ProtectedModule {}

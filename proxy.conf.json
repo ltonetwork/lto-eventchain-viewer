@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://ilt.legalthings.one",
+    "secure": true,
+    "changeOrigin": true
+  }
+}

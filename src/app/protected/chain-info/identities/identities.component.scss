@@ -1,0 +1,17 @@
+.container {
+  width: 100%;
+  max-width: 1000px;
+  padding: 16px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.label {
+  font-weight: 600;
+}
+pre {
+  margin-top: 6px;
+  padding: 8px;
+  border: 1px solid #ebebeb;
+  overflow-x: auto;
+}

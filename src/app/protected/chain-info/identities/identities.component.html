@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="identities" fxLayout="column" fxLayoutGap="16px">
+    <mat-card *ngFor="let identity of identities$ | async">
+      <mat-card-content fxLayout="column" fxLayoutGap="8px">
+        <div>
+          <div class="label">id</div>
+          <i>{{identity.id}}</i>
+        </div>
+        <div>
+          <div class="label">Encrypt key</div>
+          <i>{{identity.encryptkey}}</i>
+        </div>
+        <div>
+          <div class="label">Timestamp</div>
+          <i>{{identity.timestamp}}</i>
+        </div>
+        <div>
+          <div class="label">Info</div>
+          <pre>{{identity.info | json}}</pre>
+
+        </div>
+        <div>
+          <div class="label">Sign keys</div>
+          <pre>{{identity.signkeys | json}}</pre>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

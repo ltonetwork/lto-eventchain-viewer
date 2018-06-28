@@ -1,18 +1,26 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center center" fxFlex="1 1 auto">
-  <div class="login-card mat-elevation-z2">
-    <h2>Login</h2>
-    <form fxLayout="column">
-      <mat-form-field>
-        <input type="email" required matInput placeholder="Email">
-      </mat-form-field>
-      <mat-form-field>
-        <input type="password" required matInput placeholder="Password">
-      </mat-form-field>
+  <mat-card>
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-content>
+      <form fxLayout="column" #loginForm="ngForm">
+        <mat-form-field>
+          <mat-select placeholder="Email" name="email" required ngModel>
+            <mat-option *ngFor="let email of emails" [value]="email">{{email}}</mat-option>
+          </mat-select>
+        </mat-form-field>
 
-
-    </form>
-    <div class="buttons-container" fxLayoutAlign="end">
-      <button mat-button color="primary" routerLink="../list">Login</button>
-    </div>
-  </div>
+        <mat-form-field>
+          <input type="password" required matInput placeholder="Password" name="password" ngModel>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions fxLayout="row" fxLayoutAlign="end">
+      <a mat-button routerLink="../register">Register</a>
+      <button *ngIf="emails.length" mat-button color="primary" (click)="login(loginForm.value)">Login</button>
+    </mat-card-actions>
+  </mat-card>
 </div>
+
+<ng-template #noEmailsTpl>
+  No accounts registerd on this machine.
+</ng-template>

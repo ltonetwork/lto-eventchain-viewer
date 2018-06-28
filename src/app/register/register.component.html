@@ -1,0 +1,27 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center center" fxFlex="1 1 auto">
+  <mat-card>
+    <mat-card-title>Register</mat-card-title>
+    <mat-card-content>
+      <form fxLayout="column" novalidate #form="ngForm">
+        <mat-form-field>
+          <input type="text" matInput placeholder="Name" required ngModel name="name" autocomplete="new-password">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="email" matInput placeholder="Email" required ngModel name="email" autocomplete="new-password">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="password" matInput placeholder="Password" required ngModel name="password" autocomplete="new-password">
+        </mat-form-field>
+
+      </form>
+    </mat-card-content>
+    <mat-card-actions fxLayout="row" fxLayoutAlign="end">
+      <a mat-button routerLink="../login">Login</a>
+      <button mat-button color="primary" (click)="register(form.value)">Register</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<ng-template #noEmailsTpl>
+  No accounts registerd on this machine.
+</ng-template>

@@ -2,15 +2,25 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/material';
+import {
+  MatFormFieldModule,
+  MatInputModule,
+  MatButtonModule,
+  MatSelectModule,
+  MatSnackBarModule,
+  MatCardModule
+} from '@angular/material';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SignInterceptor } from './interceptors/sign.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, RegisterComponent],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
@@ -19,9 +29,19 @@ import { LoginComponent } from './login/login.component';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatCardModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: SignInterceptor
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

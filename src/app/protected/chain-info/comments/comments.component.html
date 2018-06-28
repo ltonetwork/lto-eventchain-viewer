@@ -1,0 +1,9 @@
+<div class="container">
+  <h2>Comments</h2>
+  <div class="comments" fxLayout="column" fxLayoutGap="8px">
+    <div class="comment" *ngFor="let comment of comments$ | async">
+      Comment:
+      <pre>{{comment | json}}</pre>
+    </div>
+  </div>
+</div>

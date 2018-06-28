@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  padding-top: 128px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: auto;
+}
+
+mat-toolbar {
+  background: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+h1 {
+  font-weight: 100 !important;
+}
+
+.tabs-row {
+  height: auto !important;
+}
+
+nav {
+  border-bottom: none !important;
+}

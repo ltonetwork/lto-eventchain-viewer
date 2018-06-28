@@ -12,54 +12,20 @@
   </mat-toolbar-row>
 </mat-toolbar>
 <div class="events-container">
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>HGH23G4H2134GJHG123H4GH1234FC23421B34N2134</mat-panel-title>
-      <mat-panel-description>Description goes here</mat-panel-description>
-    </mat-expansion-panel-header>
-    Event body will be here
-    <mat-action-row>
-      <button mat-button color="primary">Details</button>
-    </mat-action-row>
-  </mat-expansion-panel>
-  <mat-icon>
-    link
-  </mat-icon>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>HGH23G4H2134GJHG123H4GH1234FC23421B34N2134</mat-panel-title>
-      <mat-panel-description>Description goes here</mat-panel-description>
-    </mat-expansion-panel-header>
-    Event body will be here
-  </mat-expansion-panel>
-  <mat-icon>
-    link
-  </mat-icon>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>HGH23G4H2134GJHG123H4GH1234FC23421B34N2134</mat-panel-title>
-      <mat-panel-description>Description goes here</mat-panel-description>
-    </mat-expansion-panel-header>
-    Event body will be here
-  </mat-expansion-panel>
-  <mat-icon>
-    link
-  </mat-icon>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>HGH23G4H2134GJHG123H4GH1234FC23421B34N2134</mat-panel-title>
-      <mat-panel-description>Description goes here</mat-panel-description>
-    </mat-expansion-panel-header>
-    Event body will be here
-  </mat-expansion-panel>
-  <mat-icon>
-    link
-  </mat-icon>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>HGH23G4H2134GJHG123H4GH1234FC23421B34N2134</mat-panel-title>
-      <mat-panel-description>Description goes here</mat-panel-description>
-    </mat-expansion-panel-header>
-    Event body will be here
-  </mat-expansion-panel>
+  <ng-container *ngFor="let event of events$ | async">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>HASH: HGH23G4H2134GJHG123H4GH1234FC23421B34N2134</mat-panel-title>
+        <mat-panel-description>Description goes here</mat-panel-description>
+      </mat-expansion-panel-header>
+      Event body will be here
+      <mat-action-row>
+        <button mat-button color="primary">Details</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+    <mat-icon>
+      link
+    </mat-icon>
+  </ng-container>
+
 </div>
