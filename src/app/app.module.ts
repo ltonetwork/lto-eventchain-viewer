@@ -18,6 +18,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { environment } from '../environments/environment';
+
+import { HOST_URL } from './tokens';
+
+const providers: any[] = [
+  {
+    provide: HOST_URL,
+    useValue: environment.hostUrl
+  }
+];
+
+if (environment.secure) {
+  providers.push({
+    provide: HTTP_INTERCEPTORS,
+    multi: true,
+    useClass: SignInterceptor
+  });
+}
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, RegisterComponent],
@@ -35,13 +53,7 @@ import { RegisterComponent } from './register/register.component';
     MatCardModule,
     HttpClientModule
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      multi: true,
-      useClass: SignInterceptor
-    }
-  ],
+  providers: providers,
   bootstrap: [AppComponent]
 })
 export class AppModule {}

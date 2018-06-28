@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map, catchError, filter, switchMap } from 'rxjs/operators';
-import { MediaQueryService } from '../../services/media-query.service';
+import { catchError, filter } from 'rxjs/operators';
 import { ChainsService } from '../../services/chains.service';
 
 @Component({
@@ -10,12 +9,11 @@ import { ChainsService } from '../../services/chains.service';
   styleUrls: ['./chains-list.component.scss']
 })
 export class ChainsListComponent implements OnInit {
-  columns$: Observable<number>;
-  chains$: Observable<any>;
+  chains$: Observable<any[]>;
 
   isError = false;
 
-  constructor(private _mediaQuery: MediaQueryService, private _chains: ChainsService) {
+  constructor(private _chains: ChainsService) {
     this.chains$ = _chains.chains$.pipe(
       catchError(error => {
         this.isError = true;
@@ -23,19 +21,6 @@ export class ChainsListComponent implements OnInit {
         return of(null);
       }),
       filter(chains => !!chains)
-    );
-
-    this.columns$ = this._mediaQuery.mediaAlias$.pipe(
-      map(media => {
-        switch (media) {
-          case 'xs':
-            return 1;
-          case 'sm':
-            return 2;
-          default:
-            return 3;
-        }
-      })
     );
   }
 

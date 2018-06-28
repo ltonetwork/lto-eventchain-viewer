@@ -1,27 +1,21 @@
-import { Injectable } from '@angular/core';
-import { AuthService } from './auth.service';
+import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { switchMap, shareReplay, catchError, map } from 'rxjs/operators';
-import { Account } from 'lto-api';
+import { shareReplay, catchError, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
+import { HOST_URL } from '../tokens';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChainsService {
-  private _hostUrl = '';
-
   chains$: Observable<any>;
   constructor(
-    private _auth: AuthService,
-    private _http: HttpClient,
-    private _snackbar: MatSnackBar
+    _http: HttpClient,
+    private _snackbar: MatSnackBar,
+    @Inject(HOST_URL) private _hostUrl: string
   ) {
-    this.chains$ = _auth.account$.pipe(
-      switchMap(account => {
-        return _http.get(`${this._hostUrl}/api/events/event-chains`);
-      }),
+    this.chains$ = _http.get(`${this._hostUrl}/api/events/event-chains`).pipe(
       catchError(error => {
         this._snackbar.open('Chains loading error', 'DISMISS', { duration: 3000 });
         throw error;

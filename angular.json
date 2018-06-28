@@ -43,6 +43,14 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
+            },
+            "microapp": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.microapp.ts"
+                }
+              ]
             }
           }
         },
@@ -55,6 +63,9 @@
           "configurations": {
             "production": {
               "browserTarget": "viewer-demo:build:production"
+            },
+            "microapp": {
+              "browserTarget": "viewer-demo:build:microapp"
             }
           }
         },
