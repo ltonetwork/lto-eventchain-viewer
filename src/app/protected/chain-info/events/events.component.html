@@ -1,7 +1,51 @@
 <ng-container *ngIf="eventChain$ | async as chain">
   <div class="events-container">
-    <ng-container *ngFor="let event of chain.events; last as isLast">
-      <mat-expansion-panel>
+    <ng-container *ngFor="let event of chain.events; last as isLast; first as isFirst; index as i">
+      <div class="connection" *ngIf="!isFirst" fxLayout="row">
+        <div class="prev" fxLayout="column" fxLayoutAlign="start start">
+          <div class="connection-hash mat-elevation-z1">
+            <b>HASH:</b> {{chain.events[i-1].hash}}
+          </div>
+        </div>
+        <span fxFlex="1 1 auto" fxLayout="row" fxLayoutAlign="center center">
+          <mat-icon>link</mat-icon>
+        </span>
+        <div class="current" fxLayout="column" fxLayoutAlign="end end">
+          <div class="connection-hash mat-elevation-z1">
+            <b>Previous: </b>
+            {{event.previous}}
+          </div>
+        </div>
+      </div>
+      <div class="event mat-elevation-z1">
+        <div class="event-content">
+          <div fxLayout="column" fxLayoutGap="8px" class="event-data">
+            <div class="Date">
+              <span class="label">Event date:</span>
+              <br>
+              <i>{{event.timestamp | date : 'medium'}}</i>
+            </div>
+            <div class="signature">
+              <span class="label">Event signature:</span>
+              <br>
+              <i>{{event.signature}}</i>
+            </div>
+            <div>
+
+            </div>
+
+          </div>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>Event body</mat-panel-title>
+            </mat-expansion-panel-header>
+            <ng-template matExpansionPanelContent>
+              <pre>{{getBodyFor(event.hash) | json}}</pre>
+            </ng-template>
+          </mat-expansion-panel>
+        </div>
+      </div>
+      <!-- <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>{{event.hash}}</mat-panel-title>
           <mat-panel-description>{{event.timestamp | date}}</mat-panel-description>
@@ -23,20 +67,12 @@
               <br>
               <i>{{event.signature}}</i>
             </div>
-            <!-- <div class="body">
-              <span class="label">Event body:</span>
-              <pre>{{getBodyFor(event.hash) | json}}</pre>
-            </div> -->
           </div>
         </ng-template>
         <mat-action-row>
           <button mat-button color="primary">Show body</button>
         </mat-action-row>
-      </mat-expansion-panel>
-
-      <mat-icon *ngIf="!isLast">
-        link
-      </mat-icon>
+      </mat-expansion-panel> -->
     </ng-container>
 
   </div>

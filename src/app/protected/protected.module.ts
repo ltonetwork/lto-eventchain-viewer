@@ -11,7 +11,8 @@ import {
   MatIconModule,
   MatExpansionModule,
   MatProgressSpinnerModule,
-  MatTabsModule
+  MatTabsModule,
+  MatDividerModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ChainInfoComponent } from './chain-info/chain-info.component';
@@ -31,6 +32,7 @@ import { CommentsComponent } from './chain-info/comments/comments.component';
     MatExpansionModule,
     MatProgressSpinnerModule,
     MatTabsModule,
+    MatDividerModule,
     RouterModule.forChild([
       {
         path: '',
