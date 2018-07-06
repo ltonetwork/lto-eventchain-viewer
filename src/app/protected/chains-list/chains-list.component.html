@@ -12,7 +12,7 @@
         <mat-card class="mat-elevation-z1" [routerLink]="chain.id" *ngFor="let chain of chains">
           <mat-card-title>ID: {{chain.id}}</mat-card-title>
           <mat-card-content>
-            <div fxLayout="row">
+            <div fxLayout="row" *ngIf="chain.events">
               <div fxFlex="50">
                 <span class="label" fxFlex="1 1 auto">Events: </span>
                 <span>{{chain.events.length}}</span>

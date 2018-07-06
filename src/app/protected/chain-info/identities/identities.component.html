@@ -1,29 +1,34 @@
-<div class="container">
-  <div class="identities" fxLayout="column" fxLayoutGap="16px">
-    <mat-card *ngFor="let identity of identities$ | async">
-      <mat-card-content fxLayout="column" fxLayoutGap="8px">
-        <div>
-          <div class="label">id</div>
-          <i>{{identity.id}}</i>
-        </div>
-        <div>
-          <div class="label">Encrypt key</div>
-          <i>{{identity.encryptkey}}</i>
-        </div>
-        <div>
-          <div class="label">Timestamp</div>
-          <i>{{identity.timestamp}}</i>
-        </div>
-        <div>
-          <div class="label">Info</div>
-          <pre>{{identity.info | json}}</pre>
+<ng-container *ngIf="identities$ | async as identities">
+  <div class="container">
+    <ng-container *ngIf="identities.length === 0">
+      <h2>Seems like there is no identities in this chain</h2>
+    </ng-container>
+    <div class="identities" fxLayout="column" fxLayoutGap="16px">
+      <mat-card *ngFor="let identity of identities">
+        <mat-card-content fxLayout="column" fxLayoutGap="8px">
+          <div>
+            <div class="label">id</div>
+            <i>{{identity.id}}</i>
+          </div>
+          <div>
+            <div class="label">Encrypt key</div>
+            <i>{{identity.encryptkey}}</i>
+          </div>
+          <div>
+            <div class="label">Timestamp</div>
+            <i>{{identity.timestamp}}</i>
+          </div>
+          <div>
+            <div class="label">Info</div>
+            <pre>{{identity.info | json}}</pre>
 
-        </div>
-        <div>
-          <div class="label">Sign keys</div>
-          <pre>{{identity.signkeys | json}}</pre>
-        </div>
-      </mat-card-content>
-    </mat-card>
+          </div>
+          <div>
+            <div class="label">Sign keys</div>
+            <pre>{{identity.signkeys | json}}</pre>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
-</div>
+</ng-container>

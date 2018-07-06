@@ -1,5 +1,8 @@
 <ng-container *ngIf="eventChain$ | async as chain">
   <div class="events-container">
+    <ng-container *ngIf="chain.events.length === 0">
+      <h2>Seems like there is no events in this chain</h2>
+    </ng-container>
     <ng-container *ngFor="let event of chain.events; last as isLast; first as isFirst; index as i">
       <div class="connection" *ngIf="!isFirst" fxLayout="row">
         <div class="prev" fxLayout="column" fxLayoutAlign="start start">
@@ -45,34 +48,6 @@
           </mat-expansion-panel>
         </div>
       </div>
-      <!-- <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>{{event.hash}}</mat-panel-title>
-          <mat-panel-description>{{event.timestamp | date}}</mat-panel-description>
-        </mat-expansion-panel-header>
-        <ng-template matExpansionPanelContent>
-          <div fxLayout="column" fxLayoutGap="8px">
-            <div class="previous">
-              <span class="label">Previous event:</span>
-              <br>
-              <i>{{event.previous}}</i>
-            </div>
-            <div class="hash">
-              <span class="label">Event hash:</span>
-              <br>
-              <i>{{event.hash}}</i>
-            </div>
-            <div class="signature">
-              <span class="label">Event signature:</span>
-              <br>
-              <i>{{event.signature}}</i>
-            </div>
-          </div>
-        </ng-template>
-        <mat-action-row>
-          <button mat-button color="primary">Show body</button>
-        </mat-action-row>
-      </mat-expansion-panel> -->
     </ng-container>
 
   </div>
