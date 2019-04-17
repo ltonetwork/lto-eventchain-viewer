@@ -3,7 +3,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/c
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { switchMap } from 'rxjs/operators';
-import { HTTPSignature } from 'lto-api';
+import { HTTPSignature, Request } from 'lto-api';
 
 @Injectable()
 export class SignInterceptor implements HttpInterceptor {
@@ -16,11 +16,14 @@ export class SignInterceptor implements HttpInterceptor {
         const method = req.method.toLowerCase();
         const path = req.url;
 
-        const signature = new HTTPSignature({
-          '(request-target)': `${method} ${path}`,
+        const headers = {
           'x-date': date
-        });
-        const signatureHeader = signature.signWith(account).getSignature();
+        };
+
+        const ltoReq = new Request(path, method, headers);
+        const signature = new HTTPSignature(ltoReq, ['(request-target)', 'x-date']);
+
+        const signatureHeader = signature.signWith(account);
 
         return next.handle(
           req.clone({

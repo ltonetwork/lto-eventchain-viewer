@@ -16,7 +16,7 @@ export class ChainsService {
     private _snackbar: MatSnackBar,
     @Inject(HOST_URL) private _hostUrl: string
   ) {
-    this.chains$ = _http.get<Partial<Chain>[]>(`${this._hostUrl}/api/events/event-chains`).pipe(
+    this.chains$ = _http.get<Partial<Chain>[]>(`${this._hostUrl}/event-chains`).pipe(
       catchError(error => {
         this._snackbar.open('Chains loading error', 'DISMISS', { duration: 3000 });
         throw error;
