@@ -6,11 +6,6 @@ import { AuthGuard } from './guards/auth.guard';
 
 import { environment } from '../environments/environment';
 
-const authGuards = [];
-if (environment.secure) {
-  authGuards.push(AuthGuard);
-}
-
 const routes: Routes = [
   {
     path: 'login',
@@ -22,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    canActivate: authGuards,
+    canActivate: [environment.secure && AuthGuard],
     loadChildren: './protected/protected.module#ProtectedModule'
   }
 ];

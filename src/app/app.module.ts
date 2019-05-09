@@ -22,21 +22,6 @@ import { environment } from '../environments/environment';
 
 import { HOST_URL } from './tokens';
 
-const providers: any[] = [
-  {
-    provide: HOST_URL,
-    useValue: environment.hostUrl
-  }
-];
-
-if (environment.secure) {
-  providers.push({
-    provide: HTTP_INTERCEPTORS,
-    multi: true,
-    useClass: SignInterceptor
-  });
-}
-
 @NgModule({
   declarations: [AppComponent, LoginComponent, RegisterComponent],
   imports: [
@@ -53,7 +38,17 @@ if (environment.secure) {
     MatCardModule,
     HttpClientModule
   ],
-  providers: providers,
+  providers: [
+    {
+      provide: HOST_URL,
+      useValue: environment.hostUrl
+    },
+    environment.secure && {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: SignInterceptor
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
