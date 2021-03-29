@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  hostUrl: 'https://ilt.legalthings.one',
+  hostUrl: '',
   secure: true
 };
